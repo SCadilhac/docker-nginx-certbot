@@ -71,6 +71,8 @@ get_certificate() {
                 error "Authenticator is '${authenticator}' but neither '${HOME}/.aws/config' or AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY are found"
                 return 1
             fi
+        elif [ "${authenticator#dns-}" == "standalone" ]; then
+            # No configuration for this one
         else
             local configfile="/etc/letsencrypt/${authenticator#dns-}.ini"
             if [ ! -f "${configfile}" ]; then
