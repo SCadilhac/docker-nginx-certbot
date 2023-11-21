@@ -73,6 +73,7 @@ get_certificate() {
             fi
         elif [ "${authenticator#dns-}" == "standalone" ]; then
             # No configuration for this one
+            :
         else
             local configfile="/etc/letsencrypt/${authenticator#dns-}.ini"
             if [ ! -f "${configfile}" ]; then
